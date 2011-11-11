@@ -1,0 +1,4 @@
+Rails mongodb template app
+--
+change database.yml, mongo_db.yml
+
