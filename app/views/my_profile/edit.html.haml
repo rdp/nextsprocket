@@ -1,0 +1,11 @@
+- content_for :page_title, t(:'edit-user-page.title')
+
+#profile.edit
+  = render(:partial => 'my_profile/meta_panel')
+  .container_16
+    .grid_16
+      = error_messages_for :profile
+      - form_for(@profile, :url => my_profile_path) do |f|
+        = render :partial => 'form', :locals => {:f => f}
+        %p.buttons= f.submit(t(:update))
+    .clear

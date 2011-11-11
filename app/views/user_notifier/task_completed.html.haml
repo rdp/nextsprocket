@@ -1,0 +1,17 @@
+:plain
+  The task "#{@task.title}" has been completed!
+  
+  #{@task.profile.name} accepted #{@submission.profile.name}'s solution for $#{@task.total_reward}.
+  
+  The solution is now open source and available here:
+  #{task_submission_url(@task, @submission)}
+  
+  And the task page here:
+  #{task_url(@task)}
+  
+  Thanks,
+  The NextSprocket Team
+  -------
+  Get updates and chat with the team,
+  Follow us on Twitter!
+  http://twitter.com/nextsprocket

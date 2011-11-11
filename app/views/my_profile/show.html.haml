@@ -1,0 +1,41 @@
+- content_for :page_title, "My Profile - NextSprocket"
+
+#profile
+  = render(:partial => 'my_profile/meta_panel')
+  
+  .container_16
+    .grid_5
+      #user-stats
+        %ul
+          %li
+            = icon_for_reputation_points(@profile.reputation_points)
+            = "#{@profile.reputation_points} Reputation Points"
+          %li
+            = icon_for_paid_for_stats(@reputation_stats[:paid_for_submission])
+            = "Paid for #{@reputation_stats[:paid_for_submission]} submissions"
+          %li
+            = icon_for_rejected_without_reason_stats(@reputation_stats[:rejected_submission_without_reason])
+            = "Rejected #{@reputation_stats[:rejected_submission_without_reason]} submissions without reason."
+          %li
+            = icon_for_task_submissions_accepted_stats(@reputation_stats[:task_submission_accepted])
+            = "#{@reputation_stats[:task_submission_accepted]} submissions accepted."
+      #user-task-submissions= render :partial =>"profiles/task_submissions" , :locals =>{:task_submissions=>@profile.task_submissions}
+      #user-created-tasks= render :partial =>"profiles/created_tasks", :locals =>{:tasks =>@profile.tasks}
+      .clear
+    .grid_11
+      #activity-feed
+        %h3 Recent Activity
+        %ul
+          - unless @activity_items.blank?
+            - @activity_items.each do |activity_item|
+              - if activity_item_event_valid?(activity_item)
+                %li
+                  = activity_item_event_parser(activity_item)
+                  %span.time
+                    = distance_of_time_in_words_to_now(activity_item.created_at)
+                    ago
+              - else
+                - activity_item.destroy
+          - else
+            %li No recent activity.
+      .clear

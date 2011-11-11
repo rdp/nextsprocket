@@ -1,0 +1,3 @@
+= render :partial => "layouts/sections/uservoice"
+- unless yield(:onload_js).blank?
+  = javascript_tag "$(document).ready(function() {#{yield(:onload_js)}});"

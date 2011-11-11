@@ -1,0 +1,20 @@
+development:
+  environment: "sandbox"
+  username: "FILL THESE IN"
+  password: ""
+  signature: ""
+  application_id: ""
+
+test:
+  environment: "sandbox"
+  username: ""
+  password: ""
+  signature: ""
+  application_id: ""
+
+production:
+  environment: "production"
+  username: ""
+  password: ""
+  signature: ""
+  application_id: ""

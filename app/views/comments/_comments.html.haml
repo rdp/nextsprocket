@@ -1,0 +1,12 @@
+%h3= "Discussion"
+
+- if comments.empty?
+  %h4#no-comments= "No one has posted a comment. Please login to make a comment."
+
+- comments.each do |comment|
+  .comment
+    .header
+      .user= link_to(comment.profile.name, comment.profile)
+      .date= comment.created_at.strftime(Constants::DEFAULT_DATE_TIME_FORMAT)
+      .clear
+    .body= auto_link(simple_format(comment[:content]))

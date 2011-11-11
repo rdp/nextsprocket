@@ -1,0 +1,23 @@
+- content_for :page_title, "Edit #{@task[:title]}"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "Editing <span>#{link_to(@task[:title],@task)}</span>"
+    .clear
+
+#task
+  .container_16
+    .grid_16
+      #admin-tools
+        %ul
+          %li Admin:
+          %li= link_to "Back to tasks",task_path(@task.id)
+          %li= link_to "Delete this task",task_path(@task.id), :method => :delete, :confirm => "Are you sure?"
+        .clear
+    
+      = error_messages_for :task
+      - form_for(@task, :url => task_path) do |f|
+        %fieldset
+          = render :partial => 'form', :locals => {:f => f, :task => @task}
+        %p.buttons= f.submit('Save')

@@ -1,0 +1,11 @@
+development:
+  commission_email: "us_1262035432_biz@nextsprocket.com"
+  commission_percentage: 0.03
+
+test:
+  commission_email: "us_1262035432_biz@nextsprocket.com"
+  commission_percentage: 0.03
+
+production:
+  commission_email: "commission@nextsprocket.com"
+  commission_percentage: 0.03

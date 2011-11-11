@@ -1,0 +1,64 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  site-name: "Next Sprocket"
+  about-site-name: "About Next Sprocket"
+  about-site-description: "Marketplace for open source tasks."
+  tested: 'Tested'
+  add: 'Add'
+  edit: 'Edit'
+  update: 'Update'
+  author: 'Author'
+  find: 'Find'
+  email: 'Email'
+  faq: 'FAQ'
+  contact-us: 'Contact Us'
+  jobs: 'Jobs'
+  all-rights-reserved: 'All Rights Reserved'
+  terms-of-use: 'Terms of Use'
+  privacy-policy: 'Privacy Policy'
+  are-you-sure: 'Are you sure?'
+
+  errors:
+    default-header-title: 'Please try again!'
+  
+  header:
+    signup: 'Create an Account'
+    signin: 'Sign In'
+    signout: 'Sign Out'
+    my-account: 'My Profile'
+    are-you-sure: 'Are you sure you want to signout?'
+      
+  signin-page:
+    title: 'Signin'
+    submit-button: 'Signin'
+
+  signup-page:
+    title: 'Signup'
+    submit-button: 'Signup'
+    
+  edit-user-page:
+    title: 'My Account'
+  
+  password-resets-page:
+    forgot-password: 'Forgot Password'
+    reset-my-password: 'Reset my Password'
+    change-my-passowrd: 'Change My Password'
+    change-my-password-submit-button: "Update my password and log me in" 
+    
+  tags-page:
+    title: 'Tags'
+    
+  profile-page:
+    title: 'Programmers'
+    profile-name: 'Programmers'
+
+  my-profile-page:
+    title: 'My Profile'
+
+  task-page:
+    post-comment: 'Post Comment'
+
+  task-submission-page:
+    reject-confirm: 'You have to leave a comment when you reject a submission. If you do not, your reputation points will be penalized.'

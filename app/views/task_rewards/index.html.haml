@@ -1,0 +1,15 @@
+- content_for :page_title, "Rewards for #{@task[:title]}"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "Rewards for <span>#{link_to(@task[:title],@task)} in #{link_to(@task.category, tasks_path('tasks_filter[category]' => @task.category))}</span>"
+    .clear
+
+#tasks
+  .container_16
+    .grid_16
+      - if @task_rewards.empty?
+        %p= "There are no entries at this time."
+
+      = render :partial => 'tasks/rewards_list', :locals => {:rewards => @task_rewards}

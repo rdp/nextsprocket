@@ -1,0 +1,104 @@
+// Define app-specific colors first  
+!green = #191
+!gray = #555
+  
+// Now define globally applicable, general styles  
+  
+body  
+	:background-color #e8e8e8
+	:min-width 950px
+
+h2
+	:font-size 20px
+	:color #3d5970
+	a
+		:color #cccccc
+	span
+		:font-size 12px
+		:color #6aaedd
+		a
+			:color #6aaedd
+
+dl
+	dt, dd
+		:border-bottom 1px dashed #cccccc
+		:line-height 2em
+	
+	dt
+		:float left
+		:width 200px
+	dd
+		:margin-left 200px
+		:clear right
+
+a
+	:color #1D679A
+
+.large-grey-button
+	:display inline-block
+	:background transparent url(/images/grey-button-back.png) repeat-x scroll 0 0
+	:font-size 13px
+	:line-height 2em
+	:border 2px solid #666666
+	:color #000000
+	:font-weight bold
+	:text-decoration none
+	:padding 0 10px
+	:-webkit-border-radius 5px
+	:-moz-border-radius 5px
+
+.large-grey-button:hover
+	:color #00115F
+
+#admin-tools
+	:border-top 3px solid #ff0000
+	:border-bottom 3px solid #ff0000
+	:margin 1em 0
+	:padding 0
+	:color #ff0000
+	li
+		:float left
+		:margin 0
+		:padding 0.5em 1em
+		:list-style none
+	li:first-child
+		:padding-left 0
+
+#competition-banner
+	:background #0075FF none repeat scroll 0 0
+	:padding 5px 0
+	:text-align center
+	:color #ffffff
+	:font-size 15px
+	
+	a
+		:font-weight bold
+		:color #ffffff
+	
+	p
+		:margin 0
+
+// Now import all of your other SASS files, they will be  
+// automatically included in the same generated CSS file  
+// at compile time.
+@import forms.sass
+@import flash_notifications.sass
+@import pagination.sass
+
+@import header.sass
+@import body.sass
+@import footer.sass
+@import meta-panel.sass
+
+@import tasks.sass
+@import task.sass
+@import new-task.sass
+@import task-submission.sass
+@import task-submissions.sass
+@import profile.sass
+@import static.sass
+@import simplemodal.sass
+@import discussion.sass
+@import about.sass
+//@import admin.sass  
+//@import users.sass

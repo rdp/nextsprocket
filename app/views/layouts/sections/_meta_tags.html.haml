@@ -1,0 +1,13 @@
+<link rel="apple-touch-icon" href="/images/favicon_iphone.png" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="PRAGMA" content="NO-CACHE" />
+- page_meta_tags = yield(:page_meta_tags)
+- if page_meta_tags
+  = page_meta_tags
+- page_description = yield(:page_description)
+- if page_description
+  %meta{:name=>"description", :content=> truncate(page_description, :length => 80)}
+- page_keywords = yield(:page_keywords)
+- if page_keywords
+  %meta{:name=>"keywords", :content=> page_keywords}

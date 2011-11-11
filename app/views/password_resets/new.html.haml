@@ -1,0 +1,12 @@
+- content_for :page_title, t(:'password-resets-page.forgot-password')
+
+%h1= t(:'password-resets-page.forgot-password')
+
+%p= "Fill out the form below and instructions to reset your password will be emailed to you:"
+
+- form_tag password_resets_path do
+  %label= t(:'email')
+	%br
+  = text_field_tag "email"
+  %br
+  = submit_tag= t(:'password-resets-page.reset-my-password')

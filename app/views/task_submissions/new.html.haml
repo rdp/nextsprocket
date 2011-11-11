@@ -1,0 +1,26 @@
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "Submit Solution <span>for #{link_to(@task.title, @task)}</span>"
+    .clear
+
+#tasks
+  .container_16
+    .grid_16
+      #task-submission
+        = error_messages_for :task_submission
+        - form_for(@task_submission, :task_submission, :html => { :multipart => true }) do |f|
+          %fieldset
+            .group
+              %p= f.radio_button(:solution_format, "link", :onclick => '$("#submit-as-link-fields").show();$("#submit-as-file-fields").hide();')
+              %h4= f.label(:solution_format_link, "I will provide the solution for this task as a link pointing to a resource or file.")
+              .clear
+              #submit-as-link-fields{:style => 'display:none'}
+                = f.text_field(:link, :value => "http://")
+                .clear
+                %p Only submit your own work.
+              .clear
+          - license = @task.solution_license ? link_to(@task.solution_license, Task.open_source_license_links[@task.solution_license], :target=>'_blank') : link_to(Task.default_license, Task.open_source_license_links[Task.default_license], :target=>'_blank')
+          %p.note="By submitting, you agree to open source the solution under the <strong>#{license}</strong> once you are paid by the task creator."
+          %p.buttons= f.submit('Submit Solution')
+    .clear

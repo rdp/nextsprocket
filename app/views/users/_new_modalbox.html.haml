@@ -1,0 +1,8 @@
+.header
+  %h3 Signup for a free account
+.body
+  #login-modalbox-form
+    = error_messages_for :user
+    - form_for(User.new, :url => account_path) do |f|
+      = render :partial => 'users/form', :locals => {:f => f}
+      %p.buttons= f.submit(t(:'signup-page.submit-button'))

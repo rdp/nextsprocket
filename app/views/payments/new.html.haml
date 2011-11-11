@@ -1,0 +1,18 @@
+#tasks
+  .container_16
+    .grid_16
+      #new-task
+        %h2= "Pay for #{@task_submission.profile[:name]}'s submission to #{@task[:title]}"
+        = error_messages_for :payment
+        - form_for(@payment) do |f|
+          =f.hidden_field :task_submission_id, :value =>@task_submission.id
+          =f.hidden_field :recipient_id, :value =>@task_submission.profile_id
+          - if @preapproval_payment
+            =f.hidden_field :amount, :value =>@preapproval_payment.amount
+            =f.hidden_field :preapproval_key, :value =>@preapproval_payment.preapproval_key
+            =f.hidden_field :sender_email, :value =>@preapproval_payment.sender_email
+            %p.buttons= f.submit("Pay using preapproval payment.")
+          - else
+            = render :partial => 'form', :locals => {:f => f, :payment => @payment}
+            %p.buttons= f.submit('Next Step')
+    .clear

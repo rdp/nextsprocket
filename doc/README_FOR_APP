@@ -1,0 +1,5 @@
+Next Sprocket
+--
+Users table is used only for login.
+
+Everything else uses mongodb.

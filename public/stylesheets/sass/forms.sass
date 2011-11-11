@@ -1,0 +1,100 @@
+body
+	.errorExplanation
+		:margin 1em 10em 
+		:border 5px solid #ff0000 
+		:background #f9cece none repeat scroll 0 0 
+		:-webkit-border-radius 4px 
+		:-moz-border-radius 4px
+	
+		h2
+			:margin 0 
+			:padding 0.5em 1em 
+			:background #e48d8d none repeat scroll 0 0 
+			:font-size 14px 
+			:color #7e0000
+			
+		p
+			:padding 1em 
+			:margin 0 
+			:font-size 14px
+
+		ul
+			:margin 0 0 1em 1em 
+			:font-size 14px 
+
+	form
+		fieldset
+			:margin 0
+		
+			h3
+				:font-size 12px
+				:margin 10px 2em 0 2em
+				:font-weight normal
+		
+			.group
+				:margin 1em 0
+				:clear both
+				:zoom 1
+				
+				h4
+					:margin 0
+					:width 170px
+					:color #333333
+					:float left
+					:font-size 13px
+					:font-weight bold
+					:line-height 2em
+					:text-align right
+			
+				p
+					:margin 1em 0 0 190px
+					:padding 0
+					:line-height 2em
+			
+				p.note
+					:font-size 12px
+					:margin 4px 0 0 190px
+					:color #666666
+		
+			input[type='text'], input[type='password'], textarea
+				:border 1px solid #AAAAAA 
+				:font-family helvetica,arial,sans-serif 
+				:font-size 14px 
+				:line-height 1.38em 
+				:padding 3px
+		
+			input[type='text'].short
+				:width 70px
+			
+			input[type='text'].error, input[type='password'].error, textarea.error
+				:border 1px solid #ff0000
+			
+			input[type='text'].valid, input[type='password'].valid, textarea.valid
+				:border 1px solid #00BF08
+				:background #C2EFC4 none repeat scroll 0 0
+			
+			.fieldWithErrors input[type='text'], .fieldWithErrors input[type='password']
+				:border 2px solid #ff0000
+		
+		.buttons
+			:margin 1em 0 0 190px 
+	
+		button, input[type='button'], input[type='submit']
+			:display inline-block
+			:background transparent url(/images/grey-button-back.png) repeat-x scroll 0 0
+			:font-size 13px
+			:border 2px solid #666666
+			:color #000000
+			:font-weight bold
+			:text-decoration none
+			:padding 5px 10px
+			:-webkit-border-radius 5px
+			:-moz-border-radius 5px
+
+		button:hover, input[type='button']:hover, input[type='submit']:hover
+			:color #00115F
+			:cursor pointer
+		
+		input[type="checkbox"]
+			:margin 0
+			:padding 0

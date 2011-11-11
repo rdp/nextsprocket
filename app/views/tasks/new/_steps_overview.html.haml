@@ -1,0 +1,10 @@
+#steps-overview
+  %ul
+    %li{:class => cur == :overview ? 'cur' : nil} Overview
+    %li{:class => cur == :details ? 'cur' : nil} Details
+    %li{:class => cur == :pricing ? 'cur' : nil} Reward
+  #steps-progress-bar{:style => "width:300px;float:left;"}
+    %span{:style => "width:#{percent_complete}%;"}
+  #steps-progress-indicator
+    %p= "#{step_num}/3"
+  .clear

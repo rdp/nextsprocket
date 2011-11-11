@@ -1,0 +1,15 @@
+development: 
+  adapter: mongodb 
+  host: localhost 
+  database: ns_development
+testing: 
+  adapter: mongodb
+  host: localhost
+  database: ns_testing
+production: 
+  adapter: mongodb
+  host: somewhere
+  port: 27063
+  username: nextsprocket
+  password: pass
+  database: ns_prod

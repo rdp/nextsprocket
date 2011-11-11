@@ -1,0 +1,47 @@
+- content_for :page_title, "New Task"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "New Task: Give us a brief overview of the Task."
+    .clear
+    
+#tasks
+  .container_16
+    #new-task
+      .grid_14
+        = render(:partial => 'tasks/new/steps_overview', :locals => {:cur => :overview, :percent_complete => 25, :step_num => 1})
+      .clear
+      .grid_10
+        = error_messages_for :task, :header_message => t(:'errors.default-header-title')
+        - form_for(@task, :url => new_task_path(:step => 'details')) do |f|
+        
+          = f.hidden_field(:category, :value => @task.category)
+          = f.hidden_field(:associated_project_name, :value => @task.associated_project_name)
+          = f.hidden_field(:computer_language, :value => @task.computer_language)
+          = f.hidden_field(:solution_format, :value => @task.solution_format)
+          = f.hidden_field(:solution_license, :value => @task.solution_license)
+          = f.hidden_field(:requirements, :value => @task.requirements)
+          = f.hidden_field(:deadline_date, :value => @task.deadline_date)
+          = f.hidden_field(:initial_reward_amount, :value => @task.initial_reward_amount)
+              
+          %fieldset
+            .group
+              %h4= f.label(:title)
+              %p= f.text_field(:title)
+              %p.note= "Title of your task"
+            .group
+              %h4= f.label(:description)
+              %p= f.text_area(:description, :rows => 4)
+              %p.note= "Describe your task (400 characters or less)"
+          %p.buttons= f.submit('Next Step: Details')
+      .grid_4
+        #right_column
+          %h4 Example Titles
+          %ul
+            %li="Markdown lexer/parser/translator to HTML"
+            %li="Make NArray Gem JRuby compatible"
+          %h4 Example Description
+          %p="Current Markdown implementations fail many edge cases because regex cannot keep state. It also becomes unmanageable to fix due to the complexity of the regex codebase. A better implementation would be one which uses a lexer/parser/translator paradigm like ANTLR."
+    .clear
+- content_for(:onload_js, new_task_step1_validation_js)

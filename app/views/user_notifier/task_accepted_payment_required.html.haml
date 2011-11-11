@@ -1,0 +1,20 @@
+:plain
+  #{@task.profile.name} just accepted a solution for #{@task.title}.
+  
+  You contributed $#{@task_reward.amount} towards the solution.
+  
+  Click on the link below to pay the amount due.
+  #{new_payment_url(:task_submission_id => @submission.id)}
+  
+  You can view #{@submission.profile.name}'s submission here:
+  #{task_submission_url(@task, @submission)}
+
+  And the task page here:
+  #{task_url(@task)}
+
+  Thanks,
+  The NextSprocket Team
+  -------
+  Get updates and chat with the team,
+  Follow us on Twitter!
+  http://twitter.com/nextsprocket

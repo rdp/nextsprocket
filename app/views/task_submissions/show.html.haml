@@ -1,0 +1,69 @@
+- content_for :page_title, "Submissions for #{@task[:title]}"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "Submission for #{link_to(@task[:title],@task)} <span>in #{link_to(@task.category, tasks_path('tasks_filter[category]' => @task.category))}</span>"
+    .clear
+
+#task-submissions
+  .container_16
+    .grid_10
+      - if @task_submission.is_user_owner?(current_user)
+        #admin-tools
+          %ul
+            %li Admin:
+            %li= link_to("Delete", task_submission_path(@task, @task_submission), :method => :delete, :confirm => t(:'are-you-sure'))
+          .clear
+      
+      
+      #task-submission-status
+        - if @task_submission.status == Constants::TaskSubmissionStatus::OPEN
+          %p{:class => @task_submission.status} This submission is <span>OPEN</span>, meaning that it has not been accepted or rejected. Don't leave it in limbo or you'll lose reputation points over time!
+        - elsif @task_submission.status == Constants::TaskSubmissionStatus::REJECTED
+          %p{:class => @task_submission.status} This submission has been <span>REJECTED</span>.
+        - elsif @task_submission.status == Constants::TaskSubmissionStatus::ACCEPTED
+          %p{:class => @task_submission.status} This submission has been <span>ACCEPTED</span>.
+        - elsif @task_submission.status == Constants::TaskSubmissionStatus::PAID
+          %p{:class => @task_submission.status} This submission has been <span>ACCEPTED</span> and <span>PAID</span>.
+      
+      #solution-box
+        - if @task_submission.solution_format == "archive"
+          %p= link_to("Download Solution (Archive)", @task_submission.file.url)
+        - else
+          %p
+            = link_to("Solution available at #{@task_submission.link}", @task_submission.link)
+        - if @task_submission.paid?
+          %p= "Licensed under the #{link_to('MIT license', 'http://www.opensource.org/licenses/mit-license.php')}."
+      
+      #submission-actions
+        %ul
+          - if @task.is_user_owner?(current_user) && !@task_submission.paid?
+            %li= link_to("Accept and Pay", accept_task_submission_path(@task, @task_submission), :method => :post, :class => 'large-grey-button')
+            %li= link_to("Reject", reject_task_submission_path(@task, @task_submission), :method => :post, :confirm => t('task-submission-page.reject-confirm'), :class => 'large-grey-button')
+          - elsif !@task.is_user_owner?(current_user) && @task.is_user_rewarder?(current_user)
+            %li= link_to("Pay", new_payment_path(:task_submission_id => @task_submission.id), :class => 'large-grey-button')
+                                
+          %li= link_to("View Submitter's Profile", @task_submission.profile, :class => 'large-grey-button')
+
+      #discussion
+        = render :partial => "comments/comments", :locals => {:comments => @task_submission.comments}
+        - if logged_in?
+          = render :partial => "new_comment", :locals => {:task => @task, :task_submission => @task_submission}
+        - else
+          = link_to "Please login to make a comment", new_user_session_path
+    .grid_6
+      #right_column
+        #submissions
+          %ul
+            - @task.submissions.each do |task_submission|
+              - if task_submission.accepted? || task_submission.paid?
+                %li.accepted{:class => @task_submission.id == task_submission.id ? 'cur' : nil}
+                  = link_to("View #{task_submission.profile[:name]}'s submission", link_to_task_submission(@task, task_submission))
+              - elsif task_submission.rejected?
+                %li.rejected{:class => @task_submission.id == task_submission.id ? 'cur' : nil}
+                  = link_to("View #{task_submission.profile[:name]}'s submission", link_to_task_submission(@task, task_submission))
+              - else
+                %li{:class => @task_submission.id == task_submission.id ? 'cur' : nil}
+                  = link_to("View #{task_submission.profile[:name]}'s submission", link_to_task_submission(@task, task_submission))
+    .clear

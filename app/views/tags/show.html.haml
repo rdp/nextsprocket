@@ -1,0 +1,5 @@
+- content_for :page_title, h(@tag)
+%h2= @tag
+
+- @tasks.each do |t|
+  %h3= link_to t[:title], task_path(t.id)

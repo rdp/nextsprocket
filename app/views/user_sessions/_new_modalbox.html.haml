@@ -1,0 +1,16 @@
+.header
+  %h3 Next <strong>Sprocket</strong> Login
+.body
+  #login-modalbox-form
+    - form_for(UserSession.new, :url => user_session_path) do |f|
+      %fieldset
+        .group
+          %h4= f.label(:email)
+          %p= f.text_field(:email)
+        .group
+          %h4= f.label(:password)
+          %p= f.password_field(:password)
+      %p.buttons
+        = f.submit(t(:'signin-page.submit-button'))
+        or
+        = link_to("Create an account", new_user_path)

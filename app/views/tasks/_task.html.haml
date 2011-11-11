@@ -1,0 +1,18 @@
+.task
+  .reward= "#{number_to_currency(task.total_reward, :precision => 0)}<span>reward</span>"
+  %h3= "#{link_to(task.title, task)} <span>in #{link_to(task.category, tasks_path('tasks_filter[category]' => task.category))}</span>"
+  %p.description= "#{task.description} (Posted by #{link_to(task.profile.name, profile_path(task.profile), :class => 'poster')})"
+  %ul.info
+    - if task.preapproval_payments.count > 0
+      %li.prepaid Prepaid
+    %li= link_to("#{task.comments.count} comments", task_path(task, :anchor => 'discussion'))
+    %li= link_to("#{task.submissions.count} Submissions", task_path(task, :anchor => 'submissions'))
+    - if task.completed?
+      %li.completed
+        %strong= "Completed"
+    - elsif task.expired?
+      %li.expired
+        %strong= "Expired"
+    - else
+      %li{:class => (task.deadline_date-Time.now) < 3.days ? 'ending' : nil}= "Ends in <span>#{distance_of_time_in_words_to_now(task.deadline_date)}</span>"
+  .clear

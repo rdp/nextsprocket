@@ -1,0 +1,67 @@
+- current_params = params[:tasks_filter] || {}
+
+#sidebar
+  #intro-video
+    = link_to(image_tag('into_video_image.png'), 'http://nextsprocket.production.s3.amazonaws.com/ns_intro.mov', :target=> '_blank', :onclick => degrading_into_video_js)
+  - unless logged_in?
+    #signup
+      %h2
+        Welcome to Next <strong>Sprocket</strong>
+        %span.tagline the open source<br/>developer's marketplace
+      #signup-button= link_to('Create an account', new_user_path, :onclick => degrading_signup_js)
+  .filter
+    %h3 Filters
+    - form_for(tasks_filter, :url => {:controller => :tasks}, :html => {:method => :get, :id => 'filter-form'}) do |f|
+      %fieldset
+        = f.hidden_field(:category, :value => tasks_filter.category)
+        = f.hidden_field(:programming_language, :value => tasks_filter.programming_language)
+        .group
+          %h4= "Terms"
+          %p= f.text_field(:terms)
+        .group.num-range
+          %h4= "Reward"
+          %p= f.text_field(:reward_low) + " - " + f.text_field(:reward_high)
+      %p.buttons= submit_tag('Search')
+  
+  .filter
+    %h3 Category
+    - new_link_params = current_params.clone
+    %ul
+      %li{:class => tasks_filter.category.blank? ? "selected" : nil}
+        - new_link_params.delete(:category)
+        = link_to "ANY", tasks_path(:tasks_filter => new_link_params)
+      - @categories_filters.each do |cat_filter|
+        %li{:class => selected_filter_value_css_class(tasks_filter, :category, cat_filter[:cat])}
+          - new_link_params[:category] = cat_filter[:cat]
+          = link_to "#{cat_filter[:cat]} (#{cat_filter[:results_count]})", tasks_path(:tasks_filter => new_link_params)
+  .filter
+    %h3 Reward
+    - new_link_params = current_params.clone
+    %ul
+      - @rewards_filters.each do |reward_filter|
+        - if reward_filter[:min].to_i == -1 && reward_filter[:max].to_i == -1
+          %li{:class => tasks_filter.reward_low.blank? && tasks_filter.reward_high.blank? ? "selected" : nil}
+            - new_link_params.delete(:reward_low)
+            - new_link_params.delete(:reward_high)
+            = link_to "ANY", tasks_path(:tasks_filter => new_link_params)
+        - elsif reward_filter[:max].to_i == -1
+          %li{:class => tasks_filter.reward_low.to_i == reward_filter[:min].to_i && tasks_filter.reward_high.blank? ? "selected" : nil}
+            - new_link_params[:reward_low] =  reward_filter[:min]
+            - new_link_params.delete(:reward_high)
+            = link_to "$#{reward_filter[:min]}+ (#{reward_filter[:results_count]})", tasks_path(:tasks_filter => new_link_params)
+        - else
+          %li{:class => tasks_filter.reward_low.to_i == reward_filter[:min].to_i && tasks_filter.reward_high.to_i == reward_filter[:max].to_i ? "selected" : nil}
+            - new_link_params[:reward_low] =  reward_filter[:min]
+            - new_link_params[:reward_high] =  reward_filter[:max]
+            = link_to "$#{reward_filter[:min]} - $#{reward_filter[:max]} (#{reward_filter[:results_count]})", tasks_path(:tasks_filter => new_link_params)
+  .filter
+    %h3 Programming Language
+    - new_link_params = current_params.clone
+    %ul
+      %li{:class => tasks_filter.programming_language.blank? ? "selected" : nil}
+        - new_link_params.delete(:programming_language)
+        = link_to "ANY", tasks_path(:tasks_filter => new_link_params)
+      - @computer_languages_filters.each do |lang_filter|
+        %li{:class => selected_filter_value_css_class(tasks_filter, :programming_language, lang_filter[:lang])}
+          - new_link_params[:programming_language] = lang_filter[:lang]
+          = link_to "#{lang_filter[:lang]} (#{lang_filter[:results_count]})", tasks_path(:tasks_filter => new_link_params)

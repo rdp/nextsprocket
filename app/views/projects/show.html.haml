@@ -1,0 +1,29 @@
+- content_for :page_title, "#{@project[:name]}"
+- content_for :page_description, "Create #{@project[:name]} open source tasks on NextSprocket."
+
+#profile
+  #meta-panel
+    .container_16
+      .grid_11
+        %h2
+          = @project[:name]
+      .clear
+  .container_16
+    .grid_5
+      #user-stats
+        %ul
+          - unless @project[:homepage_url].blank?
+            %li= link_to "Project Page", @project[:homepage_url]
+          - unless @project[:language].blank?
+            %li
+              = "Language: "
+              = link_to @project[:language], tasks_path(:tasks_filter => {:programming_language => @project[:language]})
+      .clear
+    .grid_11
+      #activity-feed
+        %h3 Summary
+        %ul
+          %li
+            = "Is there a feature or a bug fix you need accomplished in #{@project[:name]}?"
+            = link_to "Click here to create a task for someone to do.", new_task_path
+      .clear

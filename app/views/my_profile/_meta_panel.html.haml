@@ -1,0 +1,19 @@
+#meta-panel
+  .container_16
+    .grid_11
+      %span#avatar= gravatar_image_tag(@profile.email, :alt => @profile[:name], :align=>"left", :gravatar => { :size => 96} )
+      %h2
+        = @profile[:name]
+        %span= "(#{@profile[:reputation_points]} Reputation Points)"
+      #about-me
+        -if @profile.about_me.blank?
+          %p No user bio.
+        - else
+          = simple_format(@profile.about_me)
+    .grid_5
+      #options
+        %ul
+          %li= link_to("Edit Profile", edit_my_profile_path)
+          %li= link_to("Settings", edit_user_path(current_user))
+          %li= link_to("Set your profile photo at Gravatar", "http://gravatar.com")
+    .clear

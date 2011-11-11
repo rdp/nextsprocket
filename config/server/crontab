@@ -1,0 +1,2 @@
+15 * * * * cd /u/apps/production/nextsprocket/current && rake RAILS_ENV=production task_status:open_and_ignored_task_submissions
+15 * * * * cd /u/apps/production/nextsprocket/current && rake RAILS_ENV=production task_status:expire_old

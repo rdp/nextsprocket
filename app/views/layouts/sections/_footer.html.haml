@@ -1,0 +1,23 @@
+.container_16
+  .grid_3
+    %ul
+      %li= link_to('Home', root_path)
+      %li= link_to('About', '/about')
+      %li= link_to('How it works', '/how_it_works')
+  .grid_3
+    %ul
+      %li= link_to('Blog', 'http://nextsprocket.tumblr.com')
+      %li= link_to(t(:'contact-us'), '/contact_us')
+      %li= link_to('Twitter', 'http://twitter.com/nextsprocket')
+  .grid_6
+    &nbsp;
+  .grid_4
+    %p
+      &copy; 2010
+      = t(:'site-name')
+      %br
+      = t(:'all-rights-reserved')
+      %br
+      = link_to(t(:'terms-of-use'), '/terms_of_use')
+      = link_to(t(:'privacy-policy'), '/privacy_policy')
+  .clear

@@ -1,0 +1,14 @@
+%fieldset
+  - unless params[:action] == 'edit'
+    .group
+      %h4= f.label(:name)
+      %p= f.text_field(:name)
+  .group
+    %h4= f.label(:email)
+    %p= f.text_field(:email)
+  .group
+    %h4= f.label(:password)
+    %p= f.password_field(:password)
+  .group
+    %h4= f.label(:password_confirmation)
+    %p= f.password_field(:password_confirmation)

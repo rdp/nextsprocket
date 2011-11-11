@@ -1,0 +1,9 @@
+%h3= "Submitted Tasks"
+- if task_submissions.empty?
+  %p None submitted yet.
+- else
+  %ul
+    - task_submissions.each do |ts|
+      %li
+        = link_to(ts.task.title, task_submission_path(ts.task, ts))
+        = "Status: #{ts[:status]}"

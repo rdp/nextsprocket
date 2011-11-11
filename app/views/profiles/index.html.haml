@@ -1,0 +1,17 @@
+- content_for :page_title, t(:'profile-page.title')
+#profile
+  #meta-panel
+    .container_16
+      .grid_11
+        %h2
+          = t(:'profile-page.title')
+      .clear
+#tasks
+  .container_16
+    .grid_11
+      #tasks-list
+        = "#{@profiles.total_entries} #{t(:'profile-page.title')}."
+        %ul
+          - @profiles.each do |p|
+            %li= link_to p.name, profile_path(p)
+        = will_paginate(@profiles, :class => 'pagination')

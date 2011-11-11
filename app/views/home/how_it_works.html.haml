@@ -1,0 +1,43 @@
+- title = "How it works"
+- content_for :page_title, title
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= title
+    .clear
+
+#static
+  .container_16
+    .grid_10
+      .text
+        %h3= "What is #{t(:'site-name')}?"
+
+        %p= "#{t(:'site-name')} is a marketplace for open source tasks. As coders, we all need specific components of open source projects completed but may lack the time or expertise. These tasks can be anything from bug fixes, new features, language ports, documentation or just specific code examples. Next Sprocket lets you post these tasks for a reward. Others can contribute a reward as well. Then, a developer can come along and solve the open source problem!"
+        %p= "We hope #{t(:'site-name')} will encourage more participation in open source by giving them financial rewards for their efforts. "
+
+        %h3= "Who can post new tasks and complete them?"
+
+        %p= "#{t(:'site-name')} allows anyone to post a task. Additionally, a group of people may need the task completed so the reward is cumulative. Any coder can complete the task. The task creator will choose the solution submission for the task."
+
+        %h3= "Who owns the source code?"
+
+        %p= "The coder retains all rights to the code until receiving their payment. The code will be open sourced under the selected <strong>open source license</strong> after the transaction is completed."
+
+        %h3= "How can others add a reward?"
+        %p= "Any user can come to the task page and add their own amount. Once the task is chosen by the task creator, an email will be sent to the other reward contributors that the solution is ready and that they can pay."
+
+        %h3= "How much do I pay or get paid?"
+        %p
+          <!-- PayPal Logo -->
+          <a href="#" onclick="javascript:window.open('https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=350');"><img  src="https://www.paypal.com/en_US/i/bnr/bnr_paymentsBy_150x60.gif" border="0" alt="Additional Options" align="right"></a>
+          <!-- PayPal Logo -->
+          = "#{t(:'site-name')} uses <a href='http://paypal.com'>Paypal</a> for all payment actions. To power and continue developing #{t(:'site-name')}, we takes a #{READ_COMMISSION_PERCENTAGE} commission of the transaction. The transaction is only charged when the task rewarders pays the solution provider. <strong>Uncompleted tasks are not charged!</strong>"
+
+        %h3= "How does the reputation system work?"
+        %p You gain points for paying for a task solution or completing tasks.
+        %p You can lose points if you view a task solution without taking action. Once you view the entry, you have to respond within a week to accept or reject with a comment. Otherwise, your reputation point will be lowered. We do this to prevent bait employers.
+    .grid_4
+      #right_column
+        = render :partial=> "right_column"
+.clear

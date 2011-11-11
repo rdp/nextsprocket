@@ -1,0 +1,186 @@
+#task
+  #completed-task
+    :margin 10px 10px
+    :background #73923B none repeat scroll 0 0
+    :-webkit-border-radius 4px
+    :-moz-border-radius 4px
+    :padding 10px
+    :text-align center
+    p
+      :margin 0
+      :font-size 16px
+      :color white
+  #cancelled-task, #expired-task
+    :margin 10px 10px
+    :background #cccccc none repeat scroll 0 0
+    :-webkit-border-radius 4px
+    :-moz-border-radius 4px
+    :padding 10px
+    :text-align center
+    p
+      :margin 0
+      :font-size 16px
+      :color #555555
+  #tweet-this-button
+    :background transparent url(/images/tweet-this-button.png) no-repeat scroll 0 0
+    :text-indent -9999px
+    :width 120px
+    :height 26px
+    :display inline-block
+  #right_column
+    :border-left 1px solid #cccccc
+    :padding 10px 0 10px 10px
+    :font-size 14px
+    :color #333333
+    
+    h3
+      :font-size 16px
+      :margin 10px 0
+      :padding 3px 5px
+      :border-bottom 3px solid #666666
+      :color #666666
+    
+    h3.standout
+      :color #ff0000
+      :border-bottom 3px solid #ff0000
+    
+    #deadline-info
+      :margin 0 0 20px 0
+      p
+        :margin 0 1em
+        :padding 0
+        :font-size 18px
+        :color #ff0000
+      
+    #requestor_bar
+      :background #eeeeee none repeat scroll 0 0
+      :border 1px solid #cccccc
+      :padding 10px
+      :-webkit-border-radius 4px
+      :-moz-border-radius 4px
+      
+      #reward
+        :color #ffffff
+        :background #7E9F3C none repeat scroll 0 0
+        :padding 5px 10px
+        :font-size 18px
+        :float left
+        :-webkit-border-radius 4px
+        :-moz-border-radius 4px
+        :margin 0
+      #creator
+        :float left
+        :font-size 18px
+        :padding 7px 0 0 10px
+        :margin 0
+      #info-link
+        :float right
+        a
+          :display block
+          :padding 0 5px
+          :font-size 14px
+          :border 1px solid #cccccc
+          :background #dddddd none repeat scroll 0 0
+          :color #666666  
+          :text-decoration none
+          :-webkit-border-radius 5px
+          :-moz-border-radius 5px
+        a:hover
+          :background #cccccc none repeat scroll 0 0
+    #requestor-info
+      :border-top 2px solid #dddddd
+      :border-bottom 2px solid #dddddd
+      :padding 5px
+      :margin 10px 0
+      ul
+        :padding 0
+        :margin 0 0.5em
+        li
+          :padding 0
+          :margin 0
+          :list-style none
+    ul#reward-contributors-list
+      :margin 10px 0 0 10px
+      :padding 0
+      :list-style none
+      li
+        :margin 0
+        :padding 5px 0
+        .avatar
+          :padding 0 5px 0 0
+    #contribute-reward
+      :margin 10px 0
+    #share-links
+      ul
+        :margin 0
+        :padding 0
+        :list-style none
+        li
+          :margin 0 10px 0 0
+          :padding 0
+          :float left
+        li#digg_this
+          a
+            :margin 0 0 0 5px
+            :text-decoration none
+            :color #000000
+            :font-size 12px
+            :display block
+            :float left
+          #digg_icon
+            :float left
+  .group
+    :margin 0 0 15px 0
+    h3
+      :color #444444
+      :font-size 14px
+      :float left
+      :width 120px
+      :text-align right
+      :margin 0
+    .content
+      :margin-left 150px
+      :font-size 14px
+      p
+        :margin-bottom 0
+  .group#requirements
+    .content
+      p
+        :margin 0 0 10px 0
+  
+  #submissions
+    :margin 1em 0
+    h3
+      :border-top 3px solid #117be6
+      :color #117be6
+    h4#no-submissions
+      :font-size 14px
+      :color #999999
+    p#working
+      :border-bottom 1px solid #cccccc
+      :margin 0 0 10px 25px
+      :padding 0 0 10px 0
+      :font-size 14px
+      span
+        :font-weight bold
+        :color #666666
+    ul
+      li
+        :list-style none
+        :margin 0.5em 0
+        :padding 0 0 0 20px
+        a
+          :padding 0.25em 0.5em
+      li.accepted
+        :background transparent url(/images/green_arrow.png) no-repeat scroll 0 50%
+        a
+          :color #ffffff
+          :background #117be6 none repeat scroll 0 0
+          :padding 0.25em 0.5em
+          :-webkit-border-radius 4px
+          :-moz-border-radius 4px
+      li.rejected
+        :background transparent url(/images/red_cross.png) no-repeat scroll 0 50%
+        a
+          :text-decoration line-through
+          :color #666666

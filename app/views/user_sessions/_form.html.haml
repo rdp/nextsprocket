@@ -1,0 +1,13 @@
+= error_messages_for :user_session, :header_message => t(:'errors.default-header-title')
+- form_for(user_session, :url => user_session_path) do |f|
+  %fieldset
+    .group
+      %h4= f.label(:email)
+      %p= f.text_field(:email)
+    .group
+      %h4= f.label(:password)
+      %p= f.password_field(:password)
+  %p.buttons
+    = f.submit(t(:'signin-page.submit-button'))
+    or
+    = link_to("Create an account", new_user_path)

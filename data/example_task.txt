@@ -1,0 +1,40 @@
+Example Title:
+Markdown lexer/parser/translator to HTML
+Make NArray Gem JRuby compatible
+
+Example Description:
+Current Markdown implementations fail many edge cases because regex cannot keep state. It also becomes unmanageable to fix due to the complexity of the regex codebase. A better implementation would be one which uses a lexer/parser/translator paradigm like ANTLR.
+
+Example Requirements:
+This is a sample you can base your requirements on.
+-------------------------------------------------------------------
+
+- A lexer/parser/translator approach to translating Markdown to HTML
+- Input is text formatted in Markdown.
+- Output is corresponding HTML code.
+- Details of Markdown:
+ http://daringfireball.net/projects/markdown
+- Must be implemented with a automated modern lexer/parser tool.
+These tools uses a grammar file to auto-generates the lexer/parser. Antlr is one example.
+- Must pass the MarkdownTest unit tests as referenced here:
+http://six.pairlist.net/pipermail/markdown-discuss/2004-December/000909.html
+
+Requirements Help
+If you need a bug fixed, provide a link to the bug fix on the associated open source bug tracker page.
+
+Include input/output examples.
+
+Link to actual unit test case code for maximum satisfaction. Use <a href='http://gist.github.com/'>Gist</a> for code embedding.
+
+Example Associated Project Name:
+Markdown
+
+Typical Rates
+
+These are suggested rates, you can offer as much as you like.
+# $50 for a fairly easy task.
+ex. writing documentation or example code.
+# $100 for a intermediate task.
+ex. source language translation or bug fix.
+# $300 for plugin or new feature.
+# $500 for a new project.

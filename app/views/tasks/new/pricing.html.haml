@@ -1,0 +1,74 @@
+- content_for :page_title, "New Task"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "New Task: Pricing"
+    .clear
+    
+#tasks
+  .container_16
+    #new-task
+      .grid_14
+        = render(:partial => 'tasks/new/steps_overview', :locals => {:cur => :pricing, :percent_complete => 75, :step_num => 3})
+      .clear
+      .grid_10
+        #new-task-pricing
+          = error_messages_for :task
+          - form_for(@task) do |f|
+        
+            = f.hidden_field(:title, :value => @task.title)
+            = f.hidden_field(:description, :value => @task.description)
+            = f.hidden_field(:category, :value => @task.category)
+            = f.hidden_field(:associated_project_name, :value => @task.associated_project_name)
+            = f.hidden_field(:computer_language, :value => @task.computer_language)
+            = f.hidden_field(:solution_format, :value => @task.solution_format)
+            = f.hidden_field(:solution_license, :value => @task.solution_license)
+            = f.hidden_field(:requirements, :value => @task.requirements)
+            = f.hidden_field(:deadline_date, :value => @task.deadline_date)
+          
+            %fieldset
+              .group
+                %h4= f.label(:initial_reward_amount)
+                %p#reward_amount
+                  $
+                  = f.text_field(:initial_reward_amount)
+                %p.note= "How much will you give the solution provider? *This is required!"
+              .group
+                %h4= "You will pay:"
+                %p#total_amount $
+              .group
+                %h4= #"Prepay?"
+                %p= #"Feature coming soon!" #f.check_box(:preapproval_pay, :checked => true)
+                %p.note= #"Prepaid tasks will attract more task submissions. By not prepaying, you are still committed to paying for a completed task. Not paying for a completed task will result in severe damaged reputation."
+            %p.buttons
+              = f.submit('Complete')
+              or 
+              = link_to("go back", "javascript:history.back();")
+      .grid_4
+        #right_column
+          %h4= "Typical Rates"
+          %p="These are suggested rates, you can offer as much as you like."
+          %ul
+            %li
+              $50 for a fairly easy task.
+              %br
+              ex. writing documentation or example code.
+            %li
+              $100 for a intermediate task.
+              %br
+              ex. source language translation or bug fix.
+            %li
+              %strong $300
+              for plugin or new feature.
+            %li
+              %strong $500
+              for a new project.
+          %p
+            <!-- PayPal Logo -->
+            <a href="#" onclick="javascript:window.open('https://www.paypal.com/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=350');"><img  src="https://www.paypal.com/en_US/i/bnr/bnr_paymentsBy_150x60.gif" border="0" alt="Additional Options" align="right"></a>
+            <!-- PayPal Logo -->
+
+    .clear
+
+= javascript_tag show_total_amount_with_commission_js('task_initial_reward_amount', 'total_amount')

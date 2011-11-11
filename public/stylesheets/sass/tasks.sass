@@ -1,0 +1,217 @@
+#tasks
+	h3
+		:font-size 18px
+		:font-weight normal
+	
+	#intro-video
+		:margin 0 5px 10px 5px
+		:padding 40px 0
+		:text-align center
+		:background #b8b8b8 none repeat scroll 0 0
+		:-webkit-border-radius 10px
+		:-moz-border-radius 10px
+	
+	#signup
+		:margin 0 0 15px 0
+		:padding 1em 0
+		:border 5px solid #cad4da
+		:background #33444f none repeat scroll 0 0
+		:-webkit-border-radius 5px
+		:-moz-border-radius 5px
+		
+		h2
+			:font-size 18px
+			:color #ffffff
+			:text-align center
+			:font-weight normal
+			:text-shadow 2px 2px 10px #eeeeee
+			
+			strong
+				:font-weight bold
+			
+			span
+				:display block
+				:font-size 18px
+				:color #ffffff
+		
+		#signup-button
+			a
+				:background transparent url(/images/create-account.png) no-repeat 0 0
+				:text-indent -999999px
+				:display block
+				:width 241px
+				:height 47px
+				:margin 0 auto
+			a:hover
+				:background transparent url(/images/create-account.png) no-repeat 0 -47px
+		
+	.filter
+		:padding 0.25em
+		:font-size 12px
+		:margin-bottom 15px
+		//:-webkit-border-radius 5px
+		//:-moz-border-radius 5px
+		//:background #eeeeee none repeat scroll 0 0
+		
+		h3
+			:margin 0
+			:padding 3px 7px
+			:font-size 16px
+			:color #000000
+			:font-weight normal
+			:border-bottom 5px solid #437ca1
+			//:background-color #437ca1
+			//:-webkit-border-radius 5px
+			//:-moz-border-radius 5px
+		
+		ul
+			:margin 0
+			:padding 0 0 5px 2em
+			:color #4a75a4
+			
+			li
+				:margin 5px 0
+				:padding 0 5px 0 0
+				
+				a
+					:color #4a75a4
+					:text-decoration underline
+					:font-size 14px
+			
+			li.selected
+				a
+					:color #000000
+					:font-weight bold
+					:text-decoration none
+		
+		fieldset
+			:margin 0 1em
+			.group
+				h4
+					:width 80px
+					:text-align left
+					:font-size 12px
+				p
+					:margin-left 85px
+				input[type='text'], input[type='password'], textarea
+					:width 95%
+					:font-size 12px
+					:padding 5px
+				select
+					:width 130px
+			.group.num-range
+				input[type='text']
+					:width 40px
+					
+		.buttons
+			:margin 1em
+	
+	#tasks-list
+		p.info
+			:margin 0
+			:padding 0
+			:float left
+			a
+				:text-decoration none
+				:line-height 15px
+				img
+					:float left
+					:padding 1px 3px 0 0
+		ul#ordering-bar
+			:margin 0 0 10px 0
+			:text-align right
+			:font-size 11px
+			li
+				:border-left 1px solid #cccccc
+				:color #666666
+				:margin 0
+				:padding 0
+				:display inline
+				:padding 0 7px
+				&:first-child
+					:border-left none
+				&.current
+					a
+						:color #000000
+						:text-decoration none
+						:font-weight bold
+				
+		.task
+			:margin 0 0 10px 0
+			:padding 10px 15px 10px 0
+			:background #eeeeee none repeat scroll 0 0
+			:border-bottom 3px solid #cccccc
+			.reward
+				:margin 0 0 0 10px
+				:width 60px
+				:float left
+				:font-size 18px
+				:text-align center
+				//:background-color #eeeeee
+				:color green
+				:padding 10px 0
+				//:font-weight bold
+				//:-webkit-border-radius 7px
+				//:-moz-border-radius 7px
+				span
+					:display block
+					:font-size 12px
+					:color #666666
+					:font-weight normal
+			h3, .description, .info
+				:margin-left 80px
+			.description
+				.poster
+					:color #333333
+					:border-bottom 1px dotted #333333
+					:text-decoration none
+				.poster:hover
+					:color #000000
+					:border-bottom 1px solid #000000
+			h3
+				:margin-bottom 0
+				:font-size 16px
+				:color #3D5970
+				:font-weight bold
+				span
+					:font-size 12px
+					:color #333333
+					:font-weight normal
+					a
+						:color #333333
+						:border-bottom 1px dotted #333333
+						:text-decoration none
+					a:hover
+						:color #333333
+						:border-bottom 1px solid #000000
+			p
+				:color #555555
+				:line-height 1.75em
+				:margin-bottom 0
+			ul.info
+				:padding-top 5px
+				:list-style none
+				:color #555555
+				li
+					:margin 0
+					:padding 0px 10px
+					:float left
+					:border-left 1px solid #cccccc
+					a
+						:color #488dbd
+				li:first-child
+					:border-left none
+					:padding 0px 10px 0 0
+				li.completed
+					:color white
+					:background #73923B none repeat scroll 0 0
+					:-webkit-border-radius 4px
+					:-moz-border-radius 4px
+					:text-align center
+				li.prepaid
+					:background transparent url(/images/green_arrow.png) no-repeat scroll 0 60%
+					:padding-left 20px
+				li.ending
+					span
+						:color #BF0000
+						:font-weight bold

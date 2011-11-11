@@ -1,0 +1,62 @@
+- content_for :page_title, "New Task"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "New Task: Fill in the details"
+    .clear
+    
+#tasks
+  .container_16
+    #new-task
+      .grid_14
+        = render(:partial => 'tasks/new/steps_overview', :locals => {:cur => :details, :percent_complete => 50, :step_num => 2})
+      .clear
+      .grid_10
+        = error_messages_for :task
+        - form_for(@task, :url => new_task_path(:step => 'pricing')) do |f|
+          = f.hidden_field(:title, :value => @task.title)
+          = f.hidden_field(:description, :value => @task.description)
+          = f.hidden_field(:initial_reward_amount, :value => @task.initial_reward_amount)
+          
+          %fieldset
+            .group
+              %h4= f.label(:requirements)
+              %p= f.text_area(:requirements, :value => requirements_example_text)
+              %p.note= "Describe, in detail, what you want done. Be sure to include test cases and any other implementation details."
+            .group
+              %h4= f.label(:associated_project_name)
+              %p= f.text_field(:associated_project_name)
+              %p.note= "What project is this task for? ex. Markdown"
+            .group
+              %h4= f.label(:computer_language)
+              %p= f.select(:computer_language, options_for_select(Task.computer_languages),  {:include_blank => true})
+              %p.note= "What language does the solution need to be in?"
+            .group
+              %h4= f.label(:solution_format)
+              %p= f.select(:solution_format, options_for_select(Task.solution_formats))
+              %p.note= "How do you need the solution?"
+            .group
+              %h4= f.label(:category)
+              %p= f.select(:category, options_for_select(Task.categories))
+              %p.note= "Type of task"
+            .group
+              %h4= f.label(:solution_license)
+              %p= f.select(:solution_license, options_for_select(Task.open_source_licenses))
+              %p.note= "License you wish the solution to be provided in"
+            .group
+              %h4= f.label(:deadline_date)
+              %p= f.date_select(:deadline_date, :default => 4.weeks.from_now)
+              %p.note= "When do you want want this task to end?"
+          %p.buttons
+            = f.submit('Next Step: Set Reward')
+            or 
+            = link_to("go back", "javascript:history.back();")
+      .grid_4
+        #right_column
+          %h4 Requirements Help
+          %p If you need a bug fixed, link to the bug fix on the associated open source bug tracker page.
+          %p Include input/output examples.
+          %p Link to actual unit test case code for maximum satisfaction. Use <a href='http://gist.github.com/'>Gist</a> for code embedding.
+    .clear
+- content_for(:onload_js, new_task_step2_validation_js)

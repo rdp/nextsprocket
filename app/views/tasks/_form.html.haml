@@ -1,0 +1,37 @@
+%fieldset
+  .group
+    %h4= f.label(:title)
+    %p= f.text_field(:title)
+    %p.note= "Title of your task"
+  .group
+    %h4= f.label(:description)
+    %p= f.text_area(:description, :rows => 4)
+    %p.note= "Describe your task (400 characters or less)"
+  .group
+    %h4= f.label(:requirements)
+    %p= f.text_area(:requirements)
+    %p.note= "Describe, in detail, what you want done. Be sure to include test cases and any other implementation details."
+  .group
+    %h4= f.label(:category)
+    %p= f.select(:category, options_for_select(Task.categories))
+    %p.note= "Type of task"
+  .group
+    %h4= f.label(:solution_license)
+    %p= f.select(:solution_license, options_for_select(Task.open_source_licenses))
+    %p.note= "License you wish the solution to be provided in"
+  .group
+    %h4= f.label(:associated_project_name)
+    %p= f.text_field(:associated_project_name)
+    %p.note= "What project is this task for? ex. MongoDB"
+  .group
+    %h4= f.label(:computer_language)
+    %p= f.select(:computer_language, options_for_select(Task.computer_languages, @task.computer_language),  {:include_blank => true})
+    %p.note= "What language does the solution need to be in?"
+  .group
+    %h4= f.label(:solution_format)
+    %p= f.select(:solution_format, options_for_select(Task.solution_formats))
+    %p.note= "How do you need the solution?"
+  .group
+    %h4= f.label(:deadline_date)
+    %p= f.date_select(:deadline_date)
+    %p.note= "When do you want want this task to end?"

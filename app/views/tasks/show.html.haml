@@ -1,0 +1,144 @@
+- content_for :page_title, "#{@task[:title]}"
+- content_for :page_description, "#{@task[:title]} for #{number_to_currency(@task[:total_reward], :precision => 0)}: #{@task[:description]}"
+- content_for :page_keywords, [@task[:computer_language], @task.profile.name, @task[:associated_project_name], @task[:category]].compact.join(", ")
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "#{@task[:title]} <span>in #{link_to(@task.category, tasks_path('tasks_filter[category]' => @task.category))}</span>"
+    .clear
+    
+#task
+  .container_16
+    .grid_16
+      - if @task.is_user_owner?(current_user)
+        #admin-tools
+          %ul
+            %li Admin:
+            %li= link_to("Edit", edit_task_path(@task))
+          .clear
+    - if @task.canceled?
+      .grid_16
+        #cancelled-task
+          %p= "This task has been <strong>CANCELLED</strong>."
+    - elsif @task.completed?
+      .grid_16
+        #completed-task
+          %p= "This task has been <strong>COMPLETED</strong>."
+    - elsif @task.expired?
+      .grid_16
+        #expired-task
+          %p= "This task has <strong>EXPIRED</strong>."
+    .grid_10{:style => 'overflow:hidden'}
+      .group
+        %h3 Task
+        .content
+          %p= simple_format(auto_link(@task.description))
+        .clear
+      .group#requirements
+        %h3 Requirements
+        .content
+          %p= simple_format(auto_link(@task.requirements))
+        .clear
+      .group
+        %h3 Deadline
+        .content
+          %p= @task.deadline_date.strftime(Constants::DEFAULT_DATE_TIME_FORMAT)
+      .group
+        %h3 Details
+        .content
+          = link_to_function("Show Details", "$('#metadata').slideDown();$(this).hide()")
+          #metadata{:style => 'display:none'}= render :partial =>"metadata", :locals => {:task => @task}
+        .clear
+    .grid_6
+      #right_column
+        #share-links
+          %ul
+            - if ['test', 'development'].include?(Rails.env)
+              %li Share links disabled under development
+            - else
+              %li
+                %a{:name => "fb_share", :type => "button_count", :href => "http://www.facebook.com/sharer.php"} Share
+                %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
+              %li{:style => 'padding: 4px 0 0 0;'}
+                :javascript
+                  tweetmeme_style = 'compact';
+                  tweetmeme_source = 'nextsprocket';
+                %script{:type => "text/javascript", :src => "http://tweetmeme.com/i/scripts/button.js"}
+          .clear
+        - if @task.opened? && less_than_3_days_from(@task[:deadline_date])
+          #deadline-info
+            %h3.standout Deadline
+            %p= distance_of_time_in_words_to_now(@task.deadline_date, true)
+            %p= "(#{@task.deadline_date.strftime(Constants::DEFAULT_DATE_TIME_FORMAT)})"
+        #requestor_bar
+          %p#reward= number_to_currency(@task.total_reward, :precision => 2)
+          %p#creator
+            Creator:
+            = link_to(@task.profile.name, profile_path(@task.profile))
+            = "(#{@task.profile.reputation_points})"
+          %span#info-link= link_to_function('?', "$('#requestor-info').toggle('slow')")
+          .clear
+          #requestor-info{:style => 'display:none'}
+            %ul
+              %li
+                = icon_for_reputation_points(@task.profile.reputation_points)
+                = "#{@task.profile.reputation_points} Reputation Points"
+              %li
+                = icon_for_paid_for_stats(@requestor_reputation_stats[:paid_for_submission])
+                = "Paid for #{@requestor_reputation_stats[:paid_for_submission]} submissions"
+              %li
+                = icon_for_rejected_without_reason_stats(@requestor_reputation_stats[:rejected_submission_without_reason])
+                = "Rejected #{@requestor_reputation_stats[:rejected_submission_without_reason]} submissions without reason."
+          .clear
+        .clear
+        %h3 Contributors
+        = render :partial => "rewards_list", :locals => {:rewards => @task.rewards}
+        - if !@task.completed? && !@task.is_user_owner?(current_user)
+          %p#contribute-reward= link_to('Add A Reward', new_task_reward_path(@task), :class => 'large-grey-button', :onclick => logged_in? ? nil : degrading_login_js)
+
+        - if logged_in? && !@task.is_user_owner?(current_user) && !@task.completed?
+          %h3 Complete this task
+          
+          - if @task.is_user_working_on?(current_user)
+            = link_to('Stop working on this', not_working_on_task_path(@task), :method => :post, :class => 'large-grey-button', :onclick => logged_in? ? nil : degrading_login_js)
+          - else
+            = link_to('Work on this task', working_on_task_path(@task), :method => :post, :class => 'large-grey-button', :onclick => logged_in? ? nil : degrading_login_js)
+          = link_to('Submit a Solution', new_task_submission_path(@task), :class => 'large-grey-button', :onclick => logged_in? ? nil : degrading_login_js)
+        - elsif !logged_in? && !@task.completed?
+          %h3 Complete this task
+          = link_to('Work on this task', '#', :class => 'large-grey-button', :onclick => degrading_login_js)
+          = link_to('Submit a Solution', '#', :class => 'large-grey-button', :onclick => degrading_login_js)
+    .grid_16
+      #submissions
+        %h3= "Submissions"
+        
+        - unless @task.users_working_on_this_without_submissions.blank?
+          %p#working
+            %span= "Users working on a solution:"
+            = @task.users_working_on_this_without_submissions.collect{|u|link_to(u.profile[:name], profile_path(u.profile))}.join(', ')
+        
+        - if @task_submissions.empty?
+          %h4#no-submissions= "No one has submitted a solution yet."
+        - else
+          %ul
+            - @task_submissions.each do |task_submission|
+              - date_submitted =  task_submission[:created_at].strftime(Constants::DEFAULT_DATE_TIME_FORMAT)
+              - if task_submission.paid?
+                %li.accepted
+                  = link_to("View #{task_submission.profile[:name]}'s submission", link_to_task_submission(@task, task_submission))
+                  = date_submitted
+              - elsif task_submission.rejected?
+                %li.rejected
+                  = link_to("View #{task_submission.profile[:name]}'s submission", link_to_task_submission(@task, task_submission))
+                  = date_submitted
+              - else
+                %li
+                  = link_to("View #{task_submission.profile[:name]}'s submission", link_to_task_submission(@task, task_submission))
+                  = date_submitted
+      #discussion
+        = render :partial => "comments/comments", :locals => {:comments => @comments}
+        - if logged_in?
+          = render :partial => "new_comment", :locals => {:task => @task, :comment => @comment}
+        - else
+          = link_to "Please login to make a comment", new_user_session_path

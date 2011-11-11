@@ -1,0 +1,4 @@
+.main_search_box
+  %form{:action => "/find"}
+    %input{:type=>"text", :name=>"q", :value=> @term_query, :size=>100}
+    %button{:type=>"submit"}=t(:'find')

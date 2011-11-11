@@ -1,0 +1,7 @@
+#post-comment
+  - form_for(:task_submission, task_submission, :url => create_comment_task_submission_path(task, task_submission), :html => {:method => :post}) do |f|
+    %fieldset
+      .group
+        %h4= f.label(:comment)
+        %p= text_area_tag 'content'
+    %p.buttons= f.submit(t(:'task-page.post-comment'))

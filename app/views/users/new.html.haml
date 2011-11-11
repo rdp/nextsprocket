@@ -1,0 +1,16 @@
+- content_for :page_title, t(:'signup-page.title')
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "Signup for a free account"
+    .clear
+
+#new-user
+  .container_16
+    .grid_16
+      = error_messages_for :user
+      - form_for(@user, :url => account_path) do |f|
+        = render :partial => 'form', :locals => {:f => f}
+        %p.buttons= f.submit(t(:'signup-page.submit-button'))
+    .clear

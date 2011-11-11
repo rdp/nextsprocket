@@ -1,0 +1,9 @@
+- unless flash.collect{|k, v|v.blank? ? nil : true}.compact.blank?
+  #flash-notifications.container_16
+    .grid_16
+      - unless flash[:error].blank?
+        = render(:partial => 'shared/flash_message', :locals => {:flash_type => :error, :flash_value => flash[:error]})
+      - unless flash[:success].blank?
+        = render(:partial => 'shared/flash_message', :locals => {:flash_type => :success, :flash_value => flash[:success]})
+      - unless flash[:notice].blank?
+        = render(:partial => 'shared/flash_message', :locals => {:flash_type => :notice, :flash_value => flash[:notice]})

@@ -1,0 +1,8 @@
+%fieldset
+  .group
+    %h4= f.label(:amount)
+    %p= f.text_field(:amount)
+    %p
+      = "You will pay: "
+      %span#total_amount
+= javascript_tag show_total_amount_with_commission_js('task_reward_amount', 'total_amount')

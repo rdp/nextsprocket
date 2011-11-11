@@ -1,0 +1,23 @@
+.container_16
+  #nav-meta
+    %ul
+      - if logged_in?
+        %li= current_user.email
+        %li= link_to t(:'header.my-account'), my_profile_path
+        %li= link_to t(:'header.signout'), user_session_path, :method => :delete
+      - else
+        %li= link_to(t(:'header.signup'), new_account_path, :class => 'signup-link', :onclick => degrading_signup_js)
+        %li= link_to(t(:'header.signin'), new_user_session_path, :class => 'signin-link', :onclick => degrading_login_js)
+  .grid_3
+    #logo= link_to(image_tag('logo.png'), root_path)
+    .clear
+  .grid_13
+    #nav
+      %ul
+        %li{:class => params[:controller] == 'tasks' && params[:action] == 'index' ? 'cur' : nil}
+          = link_to('Browse Open Source Tasks', root_path)
+        %li{:class => params[:controller] == 'tasks' && ['new', 'create'].include?(params[:action]) ? 'cur' : nil}
+          = link_to('Post Task', new_task_path, :onclick => logged_in? ? nil : degrading_login_js)
+        %li{:class => params[:controller] == 'home' && params[:action] == 'how_it_works' ? 'cur' : nil}= link_to('How It Works', '/how_it_works')
+    .clear
+  .clear

@@ -1,0 +1,30 @@
+- content_for :page_title, "The Open Source Developer's Marketplace"
+- content_for :page_description, "Post your open source problems and get paid to complete open source programming tasks."
+
+= auto_discovery_link_tag(:rss, {:controller => :tasks, :action => :index, :tasks_filter => @tasks_filter.to_params, :format => 'rss'}, :title => "Next Sprocket Tasks")
+
+#meta-panel
+  .container_16
+    .grid_16 &nbsp;
+    .clear
+
+#tasks
+  .container_16
+    .grid_11
+      - if @tasks.empty?
+        %h3= no_results_tasks_search_msg(@tasks_filter)
+      - else
+        #tasks-list
+          %p.info
+            = link_to(image_tag('rss_icon.png') + ' RSS Feed', :controller => :tasks, :action => :index, :tasks_filter => @tasks_filter.to_params, :format => 'rss')
+          %ul#ordering-bar
+            %li Order by
+            %li{:class => params[:sort] == 'reward' ? 'current' : nil}= link_to('Reward', tasks_path(:tasks_filter => params[:tasks_filter] || {}, :sort => 'reward'))
+            %li{:class => params[:sort] == 'deadline' ? 'current' : nil}= link_to('Deadline', tasks_path(:tasks_filter => params[:tasks_filter] || {}, :sort => 'deadline'))
+            %li{:class => params[:sort] == 'submissions' ? 'current' : nil}= link_to('Submissions', tasks_path(:tasks_filter => params[:tasks_filter] || {}, :sort => 'submissions'))
+          = render(:partial => 'task', :collection => @tasks)
+          = will_paginate(@tasks, :class => 'pagination')
+        
+    .grid_5
+      =render :partial =>"tasks/right_column", :locals => {:tasks_filter => @tasks_filter}
+    .clear

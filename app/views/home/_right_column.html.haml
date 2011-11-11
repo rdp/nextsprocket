@@ -1,0 +1,4 @@
+%ul
+  %li{:class => params[:action] == 'how_it_works' ? 'cur' : nil}= link_to('How it works', "/how_it_works")
+  %li{:class => params[:action] == 'about' ? 'cur' : nil}= link_to('About Next Sprocket', "/about")
+  %li{:class => params[:action] == 'contact_us' ? 'cur' : nil}= link_to('Contact Us', '/contact_us')

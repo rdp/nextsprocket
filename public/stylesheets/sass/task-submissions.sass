@@ -1,0 +1,78 @@
+#task-submissions
+	#task-submission-status
+		p
+			:font-size 14px
+			:text-align center
+			:padding 4px 15px
+			:-webkit-border-radius 10px
+			:-moz-border-radius 10px
+		p.accepted, p.paid
+			:background #73923b none repeat scroll 0 0
+			:color #ffffff
+		p.rejected
+			:background #ff0000 none repeat scroll 0 0
+			:color #ffffff
+		p.open
+			:background #cccccc none repeat scroll 0 0
+			:color #000000
+		span
+			:font-weight bold
+			:font-size 12px
+	
+	#solution-box
+		:border 1px solid #cccccc
+		:background #eeeeee none repeat scroll 0 0
+		:padding 20px 0
+		:text-align center
+		p
+			:margin 0
+			:padding 0
+			:font-size 18px
+	
+	#submission-actions
+		:border-top 1px solid #cccccc
+		:border-bottom 1px solid #cccccc
+		:background #eeeeee none repeat scroll 0 0
+		:padding 10px
+		:margin 10px 0
+		
+		ul
+			:margin 0
+			:padding 0
+			li
+				:display inline
+				:padding 0 5px 0 0
+				:margin 0
+				:list-style none
+	
+	#right_column
+		:border-left 1px solid #cccccc
+		:padding 10px 0 10px 10px
+				
+		#submissions
+			ul
+				:margin 0
+				:padding 0
+				li
+					:list-style none
+					:margin 0 0 10px 0
+					:padding 0 10px 0 25px
+					a
+						:font-size 16px
+						:text-decoration none
+				li.accepted
+					:background transparent url(/images/green_arrow.png) no-repeat scroll 5px 50%
+					a
+						:-webkit-border-radius 4px
+						:-moz-border-radius 4px
+				li.rejected
+					:background transparent url(/images/red_cross.png) no-repeat scroll 5px 50%
+					a
+						:text-decoration line-through
+						:color #666666
+				
+				li.cur
+					:background-color #eeeeee
+					:border 1px solid #cccccc
+					:-webkit-border-radius 4px
+					:-moz-border-radius 4px

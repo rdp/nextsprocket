@@ -1,0 +1,17 @@
+%dl
+  %dt Posted By
+  %dd= link_to(task.profile.name, profile_path(task.profile))
+  %dt Date Added
+  %dd= task.date_added.strftime(Constants::DEFAULT_DATE_TIME_FORMAT)
+  %dt Category
+  %dd= task[:category]
+  %dt Computer Language
+  %dd= task[:computer_language]
+  -unless  task.associated_project_name.blank?
+    %dt Associated Project Name
+    %dd= task[:associated_project_name]
+  %dt Solution Format
+  %dd= task[:solution_format]
+  - if task[:solution_license]
+    %dt Solution License
+    %dd= task[:solution_license]

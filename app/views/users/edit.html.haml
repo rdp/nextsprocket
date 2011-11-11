@@ -1,0 +1,21 @@
+- content_for :page_title, t(:'edit-user-page.title')
+
+#profile
+  = render(:partial => 'my_profile/meta_panel')
+
+  .container_16
+    .grid_16
+      = error_messages_for :user
+      - form_for(@user, :url => account_path) do |f|
+        %fieldset
+          .group
+            %h4= f.label(:email)
+            %p= f.text_field(:email)
+          .group
+            %h4= f.label(:password)
+            %p= f.password_field(:password)
+          .group
+            %h4= f.label(:password_confirmation)
+            %p= f.password_field(:password_confirmation)
+        %p.buttons= f.submit(t(:update))
+    .clear

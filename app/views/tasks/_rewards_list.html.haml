@@ -1,0 +1,12 @@
+%ul#reward-contributors-list
+  - rewards.each do |r|
+    - profile = r.profile
+    %li
+      = gravatar_image_tag(profile.email, :alt => profile[:name], :align => "left", :gravatar => { :size => 20} , :class => "avatar")
+      = link_to(profile[:name], profile)
+      &mdash;
+      = number_to_currency(r.amount, :precision => 2)
+      - if @task.completed?
+        = r.paid? ? "Paid" : "Pending"
+      - if r.is_user_owner?(current_user) && !@task.completed?
+        = link_to "Update", edit_task_reward_path(@task, r)

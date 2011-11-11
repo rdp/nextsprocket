@@ -1,0 +1,44 @@
+- title = "About"
+- content_for :page_title, title
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= title
+    .clear
+
+#static
+  .container_16
+    .grid_10
+      .text
+        %h4= "Welcome to #{t(:'site-name')}, the developer's marketplace!"
+        %p= "#{t(:'site-name')} is a marketplace for open source tasks. As coders, we all need specific components of open source projects completed but may lack the time or expertise. These tasks can be anything from bug fixes, new features, language ports, documentation or just specific code examples. Next Sprocket lets you post these tasks for a reward. Anyone else can also contribute as well. Then, a developer can come along and solve the open source problem!"
+        %p= "We hope #{t(:'site-name')} will encourage more participation in open source by giving them financial rewards for their efforts. "
+
+        %h3 Team
+        %p Founded by two coders who believe in open source!
+        
+        .ns-team
+          .avatar= gravatar_image_tag('tommy.chheng@gmail.com', :gravatar => { :size => 96} )
+          .info
+            %h4 Tommy Chheng
+            %p Tommy's a mountain-biking engineer who's always working on something cool. He's a graduate student at UC Irvine who procrastinates on his thesis to work on random projects.
+          %ul
+            %li= link_to "Next Sprocket Profile", "http://nextsprocket.com/profiles/tommy-chheng"
+            %li= link_to "@tommychheng", "http://twitter.com/tommychheng"
+            %li= link_to "Blog", "http://tommy.chheng.com"
+          .clear
+        .ns-team
+          .avatar= gravatar_image_tag('atomic.unit@gmail.com', :gravatar => { :size => 96} )
+          .info
+            %h4 Nitin Shantharam
+            %p Nitin's an engineer living in Irvine, CA. When he's not working on some brand new project you can find him scubadiving. Before starting Next Sprocket Nitin worked at Google (on Google Reader) and PeopleJar.
+          %ul
+            %li= link_to "Next Sprocket Profile", "http://nextsprocket.com/profiles/nitin-shantharam"
+            %li= link_to "@atomicunit", "http://twitter.com/atomicunit"
+            %li= link_to "Blog", "http://cloudrobot.com"
+          .clear
+    .grid_4
+      #right_column
+        = render :partial=> "right_column"
+    .clear

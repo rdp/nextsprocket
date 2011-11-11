@@ -1,0 +1,25 @@
+!!! 1.1
+%html{:lang => 'en'}
+  %head
+    - full_page_title = yield(:full_page_title)
+    - page_title= yield(:page_title)
+    %title= page_title(full_page_title, page_title)
+    = render :partial => "layouts/sections/meta_tags"
+    = stylesheets_includes
+    = javascript_includes
+  %body{:class => logged_in? ? 'logged-in' : nil}
+    #header= render(:partial => "layouts/sections/header")
+    #body
+      .clear
+      = render(:partial => "layouts/sections/flash_notifications")
+      = render(:partial => "layouts/sections/content")
+      .clear
+    #footer= render(:partial => "layouts/sections/footer")
+    
+    = render :partial => "layouts/sections/javascripts_load"
+    - unless logged_in?
+      %div{:style => 'display:none'}
+        #login-modalbox-content= render(:partial => 'user_sessions/new_modalbox')
+        #signup-modalbox-content= render(:partial => 'users/new_modalbox')
+    - if Rails.env == "production"
+      = render(:partial=>'layouts/sections/analytics')

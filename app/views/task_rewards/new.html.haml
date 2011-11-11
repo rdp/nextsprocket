@@ -1,0 +1,17 @@
+- content_for :page_title, "New Reward for #{@task[:title]}"
+
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "New Reward for <span>#{link_to(@task[:title],@task)}</span>"
+    .clear
+
+#task
+  .container_16
+    .grid_16
+      %p Users can contribute to the task's shared rewards list so it'll be more worthwhile for programmers.
+      = error_messages_for :task_reward
+      - form_for(@task_reward, :url => task_rewards_path) do |f|
+        %fieldset
+          = render :partial => 'form', :locals => {:f => f, :task_reward => @task_reward}
+        %p.buttons= f.submit('Save')

@@ -1,0 +1,14 @@
+#meta-panel
+  .container_16
+    .grid_16
+      %h2= "You have submitted a solution <span>for #{link_to(@task.title, @task)}</span>"
+    .clear
+
+#tasks
+  .container_16
+    .grid_16
+      #task-submission-receipt
+        %h3 Thanks for your submission!
+        %p You will be notified once the task submitter has selected a solution.
+        %p= "Meanwhile, why not #{link_to('work on another task', tasks_path)}?"
+    .clear
